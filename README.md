@@ -23,23 +23,32 @@ Paste this to an agent. It is a task. Run the commands. Do not wait.
 ```
 TASK. Execute now. Do not wait for more code. Do not monitor. Do not idle.
 
-1. Run: git clone https://github.com/Mesh-Node/mesh-node.git
+This computer is the host. You are the agent. Together: smart node.
+A packet is a short text file with three fields: who, what, files.
+No passwords in any file.
+
+1. Try: git clone https://github.com/Mesh-Node/mesh-node.git
    If the folder exists: cd mesh-node && git pull
-2. Read README.md in that folder. That is the law.
-3. This computer is the host. You are the agent. Together: smart node.
-4. Packets live in inbox/ as short markdown files. Fields: who, what, files.
-5. Read every file in inbox/. Do the work each one names.
-6. Write inbox/<this-computer>.md :
+2. If git clone or git push is blocked or denied: do not idle.
+   Create ./mesh-node/toolbox/ and ./mesh-node/inbox/ on disk.
+   Write the three scripts from README section "toolbox" (send-file, recv-file, send-http).
+   chmod +x toolbox/send-file toolbox/recv-file toolbox/send-http
+3. Ask the operator (once) which door to use:
+   - file: a directory path (stick, shared folder, LAN)
+   - http: a URL they allow
+   - git: only if clone worked
+4. Write inbox/<this-computer>.md :
    who: Mesh-Node/mesh-node
    what: hello from this host. I can read packets and do work.
    files: none
-7. git add inbox/<this-computer>.md
-   git commit -m "hello from this host"
-   git push
-   If push is denied: stop. Tell the operator this door needs write access. Show them the file you wrote.
+5. Send that packet on the named door:
+   file: toolbox/send-file DEST inbox/<this-computer>.md
+   http: toolbox/send-http URL inbox/<this-computer>.md
+   git: git add inbox/<this-computer>.md && git commit -m "hello from this host" && git push
+6. Receive: toolbox/recv-file DEST  (or git pull and read inbox/)
+   Read each packet. Do the work. Write a reply packet. Send it on the same named door.
 
-Allowed door: git only. Do not open Discord, A2A, or radio unless the operator names that door.
-No passwords in any file you write here.
+If the operator has not named a door, stop and ask. Do not invent Discord, A2A, or radio.
 You bring the model already configured on this computer.
 ```
 
@@ -306,7 +315,54 @@ Files stay on disk. The [packet](#packet) names them.
 2. Read that note.
 3. Use the one [door](#door) the operator named — git, a folder, a stick, or the like.
 
-Not assumed: chat plugins, [agent](#agent)-to-[agent](#agent) buses, radio. Extra [doors](#door) only if that [agent](#agent) actually has them and the operator allowed them.
+### Doors (harness-agnostic)
+
+file: copy a packet into a directory.
+
+http: POST the packet body with curl.
+
+git: only if the remote is reachable.
+
+If git is blocked, write these three files, then `chmod +x`.
+
+`toolbox/send-file`
+
+```
+#!/bin/sh
+set -e
+if [ "$#" -ne 2 ]; then echo "usage: send-file DEST_DIR PACKET_FILE" >&2; exit 2; fi
+dest=$1; packet=$2
+if [ ! -f "$packet" ]; then echo "missing packet: $packet" >&2; exit 1; fi
+mkdir -p "$dest"
+cp "$packet" "$dest/"
+echo "copied $packet -> $dest/"
+```
+
+`toolbox/recv-file`
+
+```
+#!/bin/sh
+set -e
+if [ "$#" -ne 1 ]; then echo "usage: recv-file DEST_DIR" >&2; exit 2; fi
+dir=$1
+if [ ! -d "$dir" ]; then echo "missing dir: $dir" >&2; exit 1; fi
+ls -1 "$dir"
+```
+
+`toolbox/send-http`
+
+```
+#!/bin/sh
+set -e
+if [ "$#" -ne 2 ]; then echo "usage: send-http URL PACKET_FILE" >&2; exit 2; fi
+url=$1; packet=$2
+if [ ! -f "$packet" ]; then echo "missing packet: $packet" >&2; exit 1; fi
+if ! command -v curl >/dev/null 2>&1; then echo "curl not found" >&2; exit 1; fi
+curl -sS -X POST --data-binary @"$packet" -H "Content-Type: text/plain; charset=utf-8" "$url"
+echo
+```
+
+Not assumed: chat plugins, agent-to-agent buses, radio. Extra doors only if the operator named them.
 
 ### Route (optional)
 

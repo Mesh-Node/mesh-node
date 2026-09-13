@@ -1,0 +1,16 @@
+#!/bin/sh
+# Copy a packet file into a directory. Harness-agnostic.
+set -e
+if [ "$#" -ne 2 ]; then
+  echo "usage: send-file DEST_DIR PACKET_FILE" >&2
+  exit 2
+fi
+dest=$1
+packet=$2
+if [ ! -f "$packet" ]; then
+  echo "missing packet: $packet" >&2
+  exit 1
+fi
+mkdir -p "$dest"
+cp "$packet" "$dest/"
+echo "copied $packet -> $dest/"

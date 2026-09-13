@@ -1,0 +1,13 @@
+#!/bin/sh
+# List packet files in a directory. Harness-agnostic.
+set -e
+if [ "$#" -ne 1 ]; then
+  echo "usage: recv-file DEST_DIR" >&2
+  exit 2
+fi
+dir=$1
+if [ ! -d "$dir" ]; then
+  echo "missing dir: $dir" >&2
+  exit 1
+fi
+ls -1 "$dir"

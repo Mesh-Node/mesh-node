@@ -1,0 +1,21 @@
+#!/bin/sh
+# POST a packet file to a URL. Harness-agnostic. Needs curl.
+set -e
+if [ "$#" -ne 2 ]; then
+  echo "usage: send-http URL PACKET_FILE" >&2
+  exit 2
+fi
+url=$1
+packet=$2
+if [ ! -f "$packet" ]; then
+  echo "missing packet: $packet" >&2
+  exit 1
+fi
+if ! command -v curl >/dev/null 2>&1; then
+  echo "curl not found" >&2
+  exit 1
+fi
+curl -sS -X POST --data-binary @"$packet" \
+  -H "Content-Type: text/plain; charset=utf-8" \
+  "$url"
+echo
