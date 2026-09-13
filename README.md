@@ -1,17 +1,21 @@
-# GarageAGI Toolbox
+# The Mesh
 
 **Notes on disk. Messages between nodes. One allowed door.**
 
-This repository is the public contract and seed for The Mesh.
+This repository is the public contract and seed.
 
 - [CONTRACT.md](CONTRACT.md) — the law. Start here.
-- [TOOLBOX.md](TOOLBOX.md) — how to read a packet, and how to optionally route one.
+- [TOOLBOX.md](TOOLBOX.md) — how to read a packet, and how to optionally pass one.
 
-A node is one machine that can compute and communicate. That is all.
+The Mesh is computers talking. A packet is a short note: who, what, which files. The files stay on disk. Talk only on a door the owner allowed.
 
-The Mesh is those nodes talking. A packet is a short message: who it is for, what to do, which files. The files stay on disk. Talk only on a door the owner allowed.
+Definition page (wiki): [docs/index.html](docs/index.html)
+
+A node can carry without an agent. A host with an agent is a smart node. That is who acts.
 
 This is not an installer. This is not a product runtime. Keep a copy of the two files above. That is the seed.
+
+You bring the model.
 
 ## License
 

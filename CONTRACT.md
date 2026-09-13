@@ -6,31 +6,35 @@ This file is the contract. Start here.
 
 ## What this is
 
-You need **compute** and **communicate**. That is all.
+The Mesh is computers talking.
 
-A node is one machine that can do both.
+It is an overlay on networks you already have. Internet, LAN, git, radio, a USB stick. The overlay does not replace them. It rides them.
 
-The seed is the shared key: how to read a packet, and how to optionally route one. Both nodes agree what it is. Both keep a copy.
-
-One set of notes per node. One seed per node.
+This overlay is one implementation. Another overlay may use a different note. Same idea: meaning, files on disk, paths the owner allowed.
 
 ## The only rule
 
 Use only a way of talking the owner allowed on that node. Anything else is a side chat. Stop.
 
-## What you send
+## Packet
 
-Everything is a **packet**.
+A packet is a short note. It says who it is for, what to do, and which files. The files stay on disk. The note is not the files.
 
-A packet is a short message. It says who it is for, what to do, and where the files are. The files stay on disk. The message is not the files.
+Meaning matters. Bytes on a chat path may stay chat. A host may encode the note for the path. The reply may leave a different door than the request.
 
 You do not get a new kind of message when the setup gets bigger. You send another packet.
 
-## Two directions
+## Seed
+
+The seed is how to read a packet, and how to optionally pass one along. Both sides keep a copy of this file and of TOOLBOX.md.
+
+One set of notes per node. One seed per node.
+
+Do not send until both have the seed.
+
+## This overlay’s note
 
 Each packet goes **out** or **back**. The next message chooses again. There is no third kind.
-
-## Two addresses
 
 Each packet is either:
 
@@ -39,24 +43,17 @@ Each packet is either:
 
 A small radio uses the same two choices. A laptop uses the same two choices.
 
-## Same idea, bigger or smaller
-
-| Step | Still a packet |
-|---|---|
-| Read | yes |
-| Route | yes |
-| Two nodes talking | yes |
-| Many nodes (The Mesh) | yes |
-
-Going “up a level” means sending the same kind of message again. TOOLBOX.md writes how to read and optionally route. If it is not written there, it is not a step.
-
-A small node with a small model is enough. Hear an allowed packet. Copy it to you. Send it along. Maybe run a local tool the owner already allowed. No new language.
-
 ## How you start
 
-Bring compute. Bring communicate. Keep a copy of this file and of TOOLBOX.md. Send packets only on a door the owner allowed.
+You bring the model. You bring the keys.
 
-No secret files in this seed. No copy of someone else’s home. You bring your own keys and your own model.
+Keep a copy of this file and of TOOLBOX.md. Send only on a door the owner allowed.
+
+No secret files in this seed. No copy of someone else’s home.
+
+Join this overlay: copy the seed. Same meaning. One allowed path.
+
+Start your own: same minimum. Your note. Your paths.
 
 ## Do not
 
@@ -70,13 +67,18 @@ No secret files in this seed. No copy of someone else’s home. You bring your o
 
 | Word | Means |
 |---|---|
-| The Mesh | nodes talking |
-| node | one machine that can compute and communicate |
-| compute | a model, on the machine or over a network the owner pointed at |
-| communicate | a path that can carry a packet |
-| packet | the short message |
+| The Mesh | computers talking; an overlay |
+| overlay | a logical network on networks computers already use |
+| node | a machine that can create, receive, or transmit on a network |
+| host | a node that runs applications. Every host is a node. Not every node is a host |
+| agent | a program that acts for a user |
+| smart node | a host running an agent. Active: reads the packet and does the work |
+| packet | the short note: who, what, which files |
+| store-and-forward | hold the notes and send later. GitHub, an SD card, a lean Pi. No agent required |
 | door | the allowed way to talk |
-| seed | how to read a packet, and how to optionally route one |
+| seed | how to read a packet, and how to optionally pass one |
 | notes | files on disk on that node |
 
 That is it.
+
+This is not an installer. This is not a product.
