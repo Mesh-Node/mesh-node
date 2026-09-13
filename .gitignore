@@ -1,6 +1,0 @@
-.env
-.env.*
-auth.json
-state.db
-*.gguf
-.DS_Store
