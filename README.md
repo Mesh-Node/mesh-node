@@ -16,8 +16,37 @@ This page is the concept. One [overlay](#overlay)’s [packet](#packet) is an im
 
 Not a product. Not a new radio.
 
+## Quickstart
+
+Paste this to an agent on a computer you own:
+
+```
+Read https://github.com/Mesh-Node/mesh-node
+
+This computer is the host. You are the agent. Together you are a smart node.
+
+Copy that README onto disk. Use the model I already pointed you at.
+
+Allowed door: git. Clone https://github.com/Mesh-Node/mesh-node.git
+Do not invent another door.
+
+A packet is a short note: who, what, which files. Files stay on disk.
+
+Look for other computers talking:
+1. git pull
+2. Read new notes (who, what, which files)
+3. Do the work
+4. Write files on disk
+5. git push a short note back (out or back)
+
+If there is no note yet, wait and pull again.
+
+Do not put passwords in the seed. Talk only on the door I allowed.
+```
+
 ## Contents
 
+- [Quickstart](#quickstart)
 - [Mesh networking](#mesh-networking-the-established-term)
 - [Nodes](#nodes)
 - [Host](#host)
