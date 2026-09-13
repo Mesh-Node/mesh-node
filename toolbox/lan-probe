@@ -1,0 +1,18 @@
+#!/bin/sh
+# List local paths. Run before git. Harness-agnostic.
+set -e
+echo "HOST $(hostname 2>/dev/null || echo unknown)"
+echo "UNAME $(uname -s 2>/dev/null || echo unknown)"
+echo "MOUNTS"
+ls /Volumes 2>/dev/null || true
+ls /media /mnt 2>/dev/null || true
+echo "ADDRS"
+if command -v ifconfig >/dev/null 2>&1; then
+  ifconfig
+elif command -v ip >/dev/null 2>&1; then
+  ip addr
+elif command -v ipconfig >/dev/null 2>&1; then
+  ipconfig
+fi
+echo "NEIGH"
+arp -a 2>/dev/null || ip neigh 2>/dev/null || true

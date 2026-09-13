@@ -1,57 +1,41 @@
-# toolbox
+# toolbox — basic smart node
 
-Harness-agnostic. POSIX sh + curl. No vendor plugin.
+This folder is the kit. Copy it onto a host. The agent runs what is in here.
 
-A packet is a file. Fields: who, what, files.
+A basic smart node is a host plus an agent plus this toolbox plus a model you bring.
 
+No Hermes. No special OS. POSIX sh + curl.
+
+## Files (this is the list)
+
+| File | Job |
+|---|---|
+| PROCEDURE.md | The loop. Local first. GitHub last. Stop is a step. |
+| lan-probe | List mounts, addresses, LAN neighbors. Run this before git. |
+| write-packet | Write a who/what/files note to disk. |
+| send-file | Copy a packet into a directory (USB, share, LAN mount). |
+| recv-file | List packets in a directory. |
+| send-http | POST a packet with curl. |
+
+## Create this toolbox
+
+If this folder is missing, write these files, then:
+
+```
+chmod +x toolbox/lan-probe toolbox/write-packet toolbox/send-file toolbox/recv-file toolbox/send-http
+```
+
+Then run:
+
+```
+toolbox/lan-probe
+```
+
+That is the first path: local.
+
+## Law
+
+Same packet: who, what, files. Files stay on disk.
 Keep looking for more connections. One blocked door is not a stop.
-
-## Doors
-
-Try all. Keep every one that works.
-
-### file
-
-Copy a packet into a directory. USB stick, shared folder, scp target, LAN mount.
-
-```
-toolbox/send-file DEST_DIR PACKET_FILE
-toolbox/recv-file DEST_DIR
-```
-
-### http
-
-POST the packet body. Needs curl.
-
-```
-toolbox/send-http URL PACKET_FILE
-```
-
-### git
-
-If git can reach the remote, use it. If blocked, keep the other doors. Then look for one more.
-
-```
-git pull
-git add inbox/
-git commit -m "packet"
-git push
-```
-
-### already on this harness
-
-If this agent already has chat, a bus, or another send API, that is a door. Use it. Same packet meaning.
-
-## Packet file
-
-Plain text. Example:
-
-```
-who: Mesh-Node/mesh-node
-what: hello from this host
-files: none
-```
-
-## Do not
-
-Passwords. Someone else’s home. Idle because one door failed.
+No passwords.
+GitHub is last.

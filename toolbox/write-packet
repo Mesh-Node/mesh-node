@@ -1,0 +1,18 @@
+#!/bin/sh
+# Write a packet file. usage: write-packet OUTFILE who what files
+set -e
+if [ "$#" -lt 4 ]; then
+  echo "usage: write-packet OUTFILE who what files" >&2
+  exit 2
+fi
+out=$1
+who=$2
+what=$3
+files=$4
+mkdir -p "$(dirname "$out")"
+{
+  echo "who: $who"
+  echo "what: $what"
+  echo "files: $files"
+} > "$out"
+echo "wrote $out"
