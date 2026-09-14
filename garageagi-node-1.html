@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GarageAGI Node 1</title>
+<style>
+  :root { color-scheme: dark; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font: 18px/1.5 system-ui, sans-serif; background: #111; color: #e8e8e8; }
+  main { max-width: 42rem; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+  h1 { font-size: 1.7rem; font-weight: 650; margin: 0 0 .75rem; }
+  h2 { font-size: 1.05rem; margin: 2.2rem 0 .5rem; letter-spacing: .04em; text-transform: uppercase; color: #888; }
+  h1[id], h2[id], dt[id] { scroll-margin-top: 1.25rem; }
+  p, li { color: #d4d4d4; }
+  dt { margin-top: 1.35rem; font-weight: 650; color: #fff; }
+  dd { margin: .35rem 0 0; }
+  .banner { border: 1px solid #555; color: #bbb; padding: .75rem 1rem; margin-bottom: 1.5rem; }
+  table { width: 100%; border-collapse: collapse; font-size: .95rem; margin-top: .75rem; }
+  th, td { text-align: left; vertical-align: top; padding: .45rem .5rem; border-bottom: 1px solid #333; }
+  th { color: #aaa; font-weight: 600; }
+  .no { color: #e88; }
+  .yes { color: #9d9; }
+  footer { margin-top: 2.5rem; font-size: .85rem; color: #888; }
+  a { color: #9cf; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a.wiki { border-bottom: 1px dotted #6af; }
+  a.wiki:hover { border-bottom-style: solid; }
+  :target { background: #243044; outline: 1px solid #456; }
+  nav.toc { border: 1px solid #333; padding: .75rem 1rem; margin: 1.25rem 0 1.75rem; }
+  nav.toc p { margin: 0 0 .4rem; color: #888; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; }
+  nav.toc ol { margin: 0; padding-left: 1.2rem; }
+  nav.toc li { margin: .2rem 0; }
+  blockquote {
+    margin: 1rem 0;
+    padding: .9rem 1rem;
+    border-left: 3px solid #666;
+    background: #1a1a1a;
+    color: #ddd;
+  }
+  pre {
+    white-space: pre-wrap;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: .9rem 1rem;
+    font: 14px/1.4 ui-monospace, Menlo, Consolas, monospace;
+    color: #ddd;
+    overflow-x: auto;
+  }
+  .cite { font-size: .9rem; color: #888; margin-top: .4rem; }
+  .hat { font-size: .9rem; color: #aaa; margin: 0 0 1rem; }
+</style>
+</head>
+<body>
+<main>
+<p class="banner">Implementation copy. One <a class="wiki" href="#smart-node">smart node</a> on <a class="wiki" href="#mesh">The Mesh</a>. Not the concept page. Not a product. Not a new radio. Hermes required. You bring the model.</p>
+
+<section id="node-1">
+<h1>GarageAGI Node 1</h1>
+<p class="hat">A guide to replicating this <a class="wiki" href="#smart-node">smart node</a> with the Garage AGI <a class="wiki" href="#toolbox">toolbox</a>.</p>
+<p><strong><a class="wiki" href="#mesh">The Mesh</a> is computers talking.</strong> This page is not that definition. This page is one machine that talks that way.</p>
+<p>A <a class="wiki" href="#node">node</a> is a machine that can create, receive, or transmit. A <a class="wiki" href="#host">host</a> is a <a class="wiki" href="#node">node</a> that runs applications. An <a class="wiki" href="#agent">agent</a> is a program that acts for a user. Together they are a <a class="wiki" href="#smart-node">smart node</a>. That is who acts.</p>
+<p>GarageAGI Node 1 is a <a class="wiki" href="#smart-node">smart node</a>: one <a class="wiki" href="#host">host</a>, Hermes as the <a class="wiki" href="#agent">agent</a>, this <a class="wiki" href="#toolbox">toolbox</a> on disk, a model you bring. Same <a class="wiki" href="#packet">packet</a> inside the machine and out to other <a class="wiki" href="#node">nodes</a>.</p>
+<p>The concept lives on the Mesh-Node seed. This page is how to stand up another box that can do the work this one does.</p>
+<p><strong>Computers are fun again.</strong></p>
+
+<nav class="toc" aria-label="Contents">
+<p>Contents</p>
+<ol>
+  <li><a href="#node-1">GarageAGI Node 1</a></li>
+  <li><a href="#quickstart">Quickstart</a></li>
+  <li><a href="#what">What this node is</a></li>
+  <li><a href="#mesh">The Mesh (concept)</a></li>
+  <li><a href="#toolbox">Toolbox</a></li>
+  <li><a href="#round-trip">Round trips</a></li>
+  <li><a href="#packets">Packets</a></li>
+  <li><a href="#memory">Memory module</a></li>
+  <li><a href="#hermes">Hermes</a></li>
+  <li><a href="#replicate">Replicate</a></li>
+  <li><a href="#usb">USB</a></li>
+  <li><a href="#omarchy">This host’s send path</a></li>
+  <li><a href="#min">Minimum</a></li>
+  <li><a href="#terms">Terms we keep</a></li>
+  <li><a href="#faq">FAQ</a></li>
+</ol>
+</nav>
+</section>
+
+<h2 id="quickstart">Quickstart</h2>
+<p>Paste this to an <a class="wiki" href="#agent">agent</a>. It is a task. Run the commands. Do not wait.</p>
+<pre>TASK. Execute now. Do not wait. Do not monitor. Do not idle.
+
+This computer is the host. You are the agent. Together: smart node.
+Hermes is required. Bring the model. Keys stay in $HERMES_HOME/.env. Not in git.
+
+Copy the Garage AGI toolbox onto this disk. cd into it.
+Packets land in inbox/.
+
+1. If hermes is missing:
+   curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+   hermes setup
+   hermes model
+2. hermes config get compression.enabled
+   Must print false. If not: hermes config set compression.enabled false
+3. Read ONLY PROCEDURE.md. Do not read the rest of this page until Stop.
+4. ./scan-secrets
+5. ./wire-memory
+6. ./lan-probe
+   First path is local. GitHub is last.
+7. Do every checkbox in PROCEDURE.md in order.
+8. After each step append one line to procedure-state.md on this computer (do not commit that file).
+9. When PROCEDURE says Stop: stop. Report working doors.
+
+No passwords in the kit. Packet: who, what, files.</pre>
+
+<h2 id="what">What this node is</h2>
+<p>GarageAGI Node 1 is not a brand of radio. It is not tenancy. It is one <a class="wiki" href="#smart-node">smart node</a> that already works.</p>
+<p>Compute: a computer that runs programs. Communicate: at least one <a class="wiki" href="#door">door</a> the owner allowed. Hermes reads the <a class="wiki" href="#packet">packet</a> and does the work. The <a class="wiki" href="#toolbox">toolbox</a> is the files that say how.</p>
+<p>You do not clone a person. You copy the kit, bring your own model, put your own keys in <code>.env</code>. The seated costume was taken out of the public kit. What ships is the harness plus the tools.</p>
+<p>Classroom to this box: same idea the whole time. Notes on disk. A short note that names them. An <a class="wiki" href="#agent">agent</a> that will actually run the commands. The Mesh is the talking. Garage AGI is this cut of the toolbox.</p>
+
+<h2 id="mesh"><a class="wiki" href="#mesh">The Mesh</a> (concept)</h2>
+<p>The concept page is the Mesh-Node seed. Read that first if you only need the words.</p>
+<p><a class="wiki" href="#mesh">The Mesh</a> is an <a class="wiki" href="#overlay">overlay</a> on networks you already have. Internet, LAN, Discord, git, radio, a USB stick. The overlay does not replace them. It rides them. Owners pick the paths.</p>
+<p>The <a class="wiki" href="#packet">packet</a> is a short note: who, what, which files. Files stay on disk. The note names them.</p>
+<p>A <a class="wiki" href="#node">node</a> can carry without an <a class="wiki" href="#agent">agent</a>. GitHub and an SD card are <a class="wiki" href="#store-and-forward">store-and-forward</a>. They hold the files. They do not act. GarageAGI Node 1 acts.</p>
+<p class="cite"><a href="https://github.com/Mesh-Node/mesh-node">https://github.com/Mesh-Node/mesh-node</a></p>
+
+<h2 id="toolbox"><a class="wiki" href="#toolbox">Toolbox</a></h2>
+<p>This folder is the kit. Not a nested <code>toolbox/toolbox</code>. Scripts sit next to README.</p>
+<p>Public cut (operator radios, this host): keep the doors, hops, memory, Hermes stand-up. House costume out. Drop files out. Notebook maybe.</p>
+<table>
+<thead><tr><th>File</th><th>Job</th><th>Public</th></tr></thead>
+<tbody>
+<tr><td>lan-probe</td><td>Mounts, addresses, neighbors. Run before git.</td><td class="yes">in</td></tr>
+<tr><td>write-packet</td><td>Write who / what / files to disk.</td><td class="yes">in</td></tr>
+<tr><td>send-file</td><td>Copy a packet into a directory.</td><td class="yes">in</td></tr>
+<tr><td>recv-file</td><td>List packets in a directory.</td><td class="yes">in</td></tr>
+<tr><td>send-http</td><td>POST a packet with curl.</td><td class="yes">in</td></tr>
+<tr><td>hop-scope</td><td>Build or validate a hop v1.5 packet.</td><td class="yes">in</td></tr>
+<tr><td>hop-send</td><td>Deliver that packet. No argv.</td><td class="yes">in</td></tr>
+<tr><td>bare-foot</td><td>New Hermes foot. No packet. Origin stays.</td><td class="yes">in</td></tr>
+<tr><td>scan-secrets</td><td>Fail if live keys leak.</td><td class="yes">kept</td></tr>
+<tr><td>wire-memory</td><td>Register the knowledge MCP with Hermes.</td><td class="yes">in</td></tr>
+<tr><td>knowledge/</td><td>Memory module. sqlite + python. Omarchy docs + Hermes docs.</td><td class="yes">in</td></tr>
+<tr><td>inflate</td><td>Hops contract onto $HERMES_HOME. Wire memory.</td><td class="yes">in</td></tr>
+<tr><td>pack-persona</td><td>USB pack. scan-secrets first. Never secrets.</td><td class="yes">in</td></tr>
+<tr><td>hops/AGENTS.md</td><td>Hop receiver contract.</td><td class="yes">in</td></tr>
+<tr><td>CONTRACT.md TOOLBOX.md PROCEDURE.md README.md</td><td>Law, how to read, the loop, the face.</td><td class="yes">in</td></tr>
+<tr><td>inbox/</td><td>hop, check the diff, hello seed.</td><td class="yes">in</td></tr>
+<tr><td>CONTRACT.A.b64 CONTRACT.B.b64</td><td>Radio-sized contract splits.</td><td class="yes">in</td></tr>
+<tr><td>notebook/</td><td>Obsidian notes.</td><td>maybe</td></tr>
+<tr><td>persona/acid-burn</td><td>House costume.</td><td class="no">out</td></tr>
+<tr><td>DROP.txt drop/</td><td>Old drop files.</td><td class="no">out</td></tr>
+</tbody>
+</table>
+<p>If it is not in the toolbox, it is not a step. Going “up a level” means sending the same kind of <a class="wiki" href="#packet">packet</a> again.</p>
+
+<h2 id="round-trip">Round trips</h2>
+<p>Each <a class="wiki" href="#packet">packet</a> goes <strong>out</strong> or <strong>back</strong>. The next message chooses again. There is no third kind.</p>
+<p>Hop packets name that as <code>edge: head</code> (out) and <code>edge: tail</code> (back).</p>
+<p>That is the round trip this node uses:</p>
+<ol>
+<li>Origin builds a validating packet with <code>hop-scope</code>. Goal is real work. Slogan (<code>inflate from disk</code>, bare <code>continue</code>) refuses.</li>
+<li>Origin sends with <code>hop-send</code>. No argv. <code>edge:</code> is on the packet.</li>
+<li><code>head</code>: a new Hermes foot gets the packet. The child inflates from disk. Does the goal. Does not talk to the donor. Next send is a new packet with its own edge — usually <code>tail</code>.</li>
+<li><code>tail</code>: the report goes back to the origin foot. No spawn.</li>
+<li>Close is one window address if the packet said to close. Never a class of windows.</li>
+</ol>
+<p>Same <a class="wiki" href="#packet">packet</a> both ways. Files stay on disk. The note names them. The child does not need the parent’s chat history. Disk is the copy.</p>
+<pre>kind: hop
+goal: one sentence of actual work
+edge: head
+constraints:
+- compression.enabled stays false
+in_scope:
+- path on disk
+out_of_scope:
+- talk to the donor
+trim:
+Working task text long enough that the foot can inflate from disk.</pre>
+<p>Receiver contract is <code>hops/AGENTS.md</code>. Head = this packet came forward. Tail = this packet is a report back.</p>
+<p><code>check the diff</code> is not a hop. No <code>edge:</code>. Inflate the collab inbox board. Do not close. Do not spawn.</p>
+
+<h2 id="packets"><a class="wiki" href="#packet">Packets</a></h2>
+<p>Everything you send is a <a class="wiki" href="#packet">packet</a>. You do not get a new kind of message when the setup gets bigger. You send another packet.</p>
+<table>
+<thead><tr><th>Packet</th><th>Shape</th></tr></thead>
+<tbody>
+<tr><td>hello</td><td>who / what / files in inbox/</td></tr>
+<tr><td>hop</td><td>kind: hop, goal, edge head|tail, in_scope, out_of_scope, trim</td></tr>
+<tr><td>check the diff</td><td>exact phrase. Not a hop. Board on disk.</td></tr>
+</tbody>
+</table>
+<p>Each packet is either to everyone allowed, or to one known <a class="wiki" href="#node">node</a>. A small radio uses the same two choices. A laptop uses the same two choices.</p>
+
+<h2 id="memory">Memory module</h2>
+<p>A memory module is a search tool plus the database it reads. The kit names the tool. Data is on this machine, or on the stick if you packed the sqlite. Not Honcho. Not chat history. Not a persona.</p>
+<p>This node ships one sqlite with two corpora already embedded: Omarchy manuals and Hermes docs. 10320 passages. Tool name: <code>search_omarchy</code>.</p>
+<p>FTS works with lemonade down. Vector search needs nomic-embed-text-v1.5 on lemonade :13305. Never the chat model. Never unload the chat model for index traffic.</p>
+<pre>./wire-memory
+# new Hermes session after add</pre>
+
+<h2 id="hermes">Hermes</h2>
+<p>Required on this node. Upstream install. You bring the model. Cloud API or local.</p>
+<pre>hermes setup
+hermes model
+hermes doctor
+hermes config set compression.enabled false</pre>
+<p>Settings in config.yaml via <code>hermes config set</code>. Secrets in <code>$HERMES_HOME/.env</code> only.</p>
+<p><code>compression.enabled: true</code> is the summarizer. That is not a hop. Leave it false.</p>
+<p class="cite"><a href="https://hermes-agent.nousresearch.com/docs/">https://hermes-agent.nousresearch.com/docs/</a></p>
+
+<h2 id="replicate">Replicate</h2>
+<p>To stand up another GarageAGI node:</p>
+<ol>
+<li>A computer that runs programs (a <a class="wiki" href="#host">host</a>).</li>
+<li>Hermes. Your model. Your keys.</li>
+<li>This toolbox on disk. Git, USB, or folder copy.</li>
+<li><code>./scan-secrets</code> then <code>./inflate</code> then <code>./wire-memory</code>.</li>
+<li>PROCEDURE.md in order. Local first. Git last. Stop is a step.</li>
+<li>One allowed <a class="wiki" href="#door">door</a>. “Only this machine” counts.</li>
+</ol>
+<p>You will not get this operator’s chat. You will get the kit, the hop contract, and a charged memory module if the sqlite came with the copy. Bring the model.</p>
+
+<h2 id="usb">USB</h2>
+<pre>./pack-persona /run/media/$USER/PERSONAS</pre>
+<p>On the other box: plug in. Inspect the drive. Then <code>./inflate</code>. Bring the model.</p>
+<p>Never <code>.env</code>, <code>auth.json</code>, <code>pgdata</code>, GGUF. scan-secrets must pass before the pack.</p>
+<p>Stick copy may include live Hermes skills from the packing box. Kit copy without skills still has the scripts and the sqlite.</p>
+
+<h2 id="omarchy">This host’s send path</h2>
+<p>Omarchy is a <a class="wiki" href="#host">host</a> OS on Node 1. It is not <a class="wiki" href="#mesh">The Mesh</a>.</p>
+<p><code>hop-send</code> and <code>bare-foot</code> on this node use Omarchy launch, Hyprland, foot, wl-copy, wtype. They are in the public cut because this node verified them here. A replica on another OS still has the packet law (<code>hop-scope</code>, <code>hops/AGENTS.md</code>). The spawn binary may need a local stand-in. That is a <a class="wiki" href="#door">door</a> on that <a class="wiki" href="#host">host</a>. Not a new protocol.</p>
+
+<h2 id="min">Minimum</h2>
+<p>Minimum to run a <a class="wiki" href="#smart-node">smart node</a> like this one:</p>
+<ol>
+<li>A computer that runs programs.</li>
+<li>Hermes.</li>
+<li>A model you bring.</li>
+<li>Disk for files.</li>
+<li>A note: who, what, which files.</li>
+<li>One <a class="wiki" href="#door">door</a> you allow.</li>
+</ol>
+<p>Minimum for <a class="wiki" href="#mesh">The Mesh</a> around it: a second <a class="wiki" href="#node">node</a>, both keep a copy of how to read the note, one allowed path between them. A USB stick is enough. GitHub is enough.</p>
+<p>Not required: Discord, radio, a server that is always on, Omarchy, two agents, encryption, a new protocol, Honcho, a house costume.</p>
+
+<h2 id="terms">Terms we keep</h2>
+<dl>
+<dt><a class="wiki" href="#mesh">The Mesh</a></dt>
+<dd>computers talking; an overlay</dd>
+<dt id="overlay"><a class="wiki" href="#overlay">overlay</a></dt>
+<dd>a logical network on networks computers already use</dd>
+<dt id="node"><a class="wiki" href="#node">node</a></dt>
+<dd>a machine that can create, receive, or transmit on a network</dd>
+<dt id="host"><a class="wiki" href="#host">host</a></dt>
+<dd>a node that runs applications. Every host is a node. Not every node is a host</dd>
+<dt id="agent"><a class="wiki" href="#agent">agent</a></dt>
+<dd>a program that acts for a user</dd>
+<dt id="smart-node"><a class="wiki" href="#smart-node">smart node</a></dt>
+<dd>a host running an agent. Descriptive. Not a standard</dd>
+<dt id="packet"><a class="wiki" href="#packet">packet</a></dt>
+<dd>the short note: who, what, which files</dd>
+<dt id="door"><a class="wiki" href="#door">door</a></dt>
+<dd>the allowed way to talk</dd>
+<dt id="store-and-forward"><a class="wiki" href="#store-and-forward">store-and-forward</a></dt>
+<dd>hold now, send later. GitHub, an SD card, a lean Pi. No agent required</dd>
+<dt><a class="wiki" href="#toolbox">toolbox</a></dt>
+<dd>the files that say how to read a packet and which local tools to run</dd>
+</dl>
+
+<h2 id="faq">FAQ</h2>
+<dl>
+<dt>Is this The Mesh page?</dt>
+<dd>No. The Mesh page is the concept. This is Node 1.</dd>
+<dt>Do I need Omarchy?</dt>
+<dd>This node used it. The packet does not. hop-send on this box does.</dd>
+<dt>Do I need Acid Burn?</dt>
+<dd>No. Costume is out of the public kit. You bring the model.</dd>
+<dt>Is Honcho the memory module?</dt>
+<dd>No. Honcho is peer notes about a person. The module is search plus sqlite.</dd>
+<dt>Why hops?</dt>
+<dd>So work can leave a full context and come back as a short note. Disk holds the files. The packet names them. That is a round trip.</dd>
+<dt>Where is the seed?</dt>
+<dd>CONTRACT.md and TOOLBOX.md in the toolbox. Mesh-Node/mesh-node is the public concept seed.</dd>
+</dl>
+
+<footer>
+GarageAGI Node 1. Same packet. Files on disk. Hermes required. You bring the model.
+</footer>
+</main>
+</body>
+</html>
