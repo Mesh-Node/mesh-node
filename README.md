@@ -47,9 +47,22 @@ Kit:
 - [notebook/](notebook/) — Obsidian notes for those tools
 - [inbox/](inbox/) — packets
 
+Also here:
+
+- [PROCEDURE.md](PROCEDURE.md) — a pointer. The procedure lives in the toolbox.
+- [garageagi-node-1.html](garageagi-node-1.html) — one host's page. A fingerprint, not the kit.
+- [LICENSE](LICENSE) — MIT. Copy the seed.
+
+## Copy
+
+This repository is the seed. Copy all of it. Keep the meaning. No passwords. Files stay on disk.
+
+`procedure-state.md` is written on your computer. It is ignored by git. Do not commit it. It holds your mounts and paths. Those stay home.
+
 ## Contents
 
 - [Quickstart](#quickstart)
+- [Copy](#copy)
 - [PROCEDURE](PROCEDURE.md)
 - [Mesh networking](#mesh-networking-the-established-term)
 - [Nodes](#nodes)
