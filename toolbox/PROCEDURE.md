@@ -2,7 +2,7 @@
 
 Lives in the toolbox. Do this in order. Tick on disk. Do not skip to git. Do not monitor.
 
-After each step write one line to `procedure-state.md` on this computer:
+After each step write one line to `procedure-state.md` on this computer (local only; do not commit it):
 
 ```
 STEP <n> PASS|FAIL <one fact>

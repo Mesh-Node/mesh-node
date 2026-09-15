@@ -1,18 +1,23 @@
 #!/bin/sh
-# Write a packet file. usage: write-packet OUTFILE who what files
+# Write a packet file. usage: write-packet OUTFILE who what [files]
+# files defaults to none. Adds from / when.
 set -e
-if [ "$#" -lt 4 ]; then
-  echo "usage: write-packet OUTFILE who what files" >&2
+if [ "$#" -lt 3 ]; then
+  echo "usage: write-packet OUTFILE who what [files]" >&2
   exit 2
 fi
 out=$1
 who=$2
 what=$3
-files=$4
+files=${4:-none}
+from=$(hostname 2>/dev/null || echo unknown)
+when=$(date -u +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || date)
 mkdir -p "$(dirname "$out")"
 {
   echo "who: $who"
   echo "what: $what"
   echo "files: $files"
+  echo "from: $from"
+  echo "when: $when"
 } > "$out"
 echo "wrote $out"
