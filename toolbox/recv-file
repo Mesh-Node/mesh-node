@@ -1,5 +1,5 @@
 #!/bin/sh
-# List packet files in a directory. Harness-agnostic.
+# Print packet bodies in a directory. Skip README. Harness-agnostic.
 set -e
 if [ "$#" -ne 1 ]; then
   echo "usage: recv-file DEST_DIR" >&2
@@ -10,4 +10,20 @@ if [ ! -d "$dir" ]; then
   echo "missing dir: $dir" >&2
   exit 1
 fi
-ls -1 "$dir"
+found=0
+for f in "$dir"/*; do
+  [ -f "$f" ] || continue
+  base=$(basename "$f")
+  case "$base" in
+    README|README.*|readme|readme.*)
+      continue
+      ;;
+  esac
+  found=1
+  echo "=== $base ==="
+  cat "$f"
+  echo
+done
+if [ "$found" -eq 0 ]; then
+  echo "(no packets)"
+fi

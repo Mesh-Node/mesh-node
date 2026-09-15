@@ -1,18 +1,33 @@
 #!/bin/sh
 # List local paths. Run before git. Harness-agnostic.
+# IPv4 only. No MAC dump. No full ifconfig.
 set -e
 echo "HOST $(hostname 2>/dev/null || echo unknown)"
 echo "UNAME $(uname -s 2>/dev/null || echo unknown)"
-echo "MOUNTS"
-ls /Volumes 2>/dev/null || true
-ls /media /mnt 2>/dev/null || true
-echo "ADDRS"
-if command -v ifconfig >/dev/null 2>&1; then
-  ifconfig
-elif command -v ip >/dev/null 2>&1; then
-  ip addr
+echo "TOOLS"
+for t in git curl sh python3; do
+  if command -v "$t" >/dev/null 2>&1; then
+    echo "  $t $(command -v "$t")"
+  else
+    echo "  $t missing"
+  fi
+done
+echo "WRITABLE"
+for d in /tmp "$HOME" "$HOME/Desktop" . /Volumes /media /mnt; do
+  [ -d "$d" ] || continue
+  if [ -w "$d" ]; then
+    echo "  dest $d"
+  fi
+done
+echo "IPV4"
+if command -v ip >/dev/null 2>&1; then
+  ip -4 -br addr 2>/dev/null || true
+elif command -v ifconfig >/dev/null 2>&1; then
+  ifconfig 2>/dev/null | awk '
+    /^[a-zA-Z0-9]/ { iface=$1; sub(":$","",iface) }
+    /inet / && $2 !~ /^127\./ { print iface, $2 }
+  '
 elif command -v ipconfig >/dev/null 2>&1; then
-  ipconfig
+  ipconfig getifaddr en0 2>/dev/null || true
+  ipconfig getifaddr en1 2>/dev/null || true
 fi
-echo "NEIGH"
-arp -a 2>/dev/null || ip neigh 2>/dev/null || true

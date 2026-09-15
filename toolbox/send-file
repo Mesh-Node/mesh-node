@@ -1,5 +1,6 @@
 #!/bin/sh
 # Copy a packet file into a directory. Harness-agnostic.
+# Refuses .git (git dest is not a file door).
 set -e
 if [ "$#" -ne 2 ]; then
   echo "usage: send-file DEST_DIR PACKET_FILE" >&2
@@ -9,6 +10,16 @@ dest=$1
 packet=$2
 if [ ! -f "$packet" ]; then
   echo "missing packet: $packet" >&2
+  exit 1
+fi
+case "$dest" in
+  .git|*/.git|.git/*|*/.git/*)
+    echo "refuse: .git dest" >&2
+    exit 1
+    ;;
+esac
+if git -C "$dest" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "refuse: git dest" >&2
   exit 1
 fi
 mkdir -p "$dest"
