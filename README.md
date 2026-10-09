@@ -44,6 +44,7 @@ No passwords. Packet: who, what, files. Files stay on disk.
 Kit:
 
 - [toolbox/](toolbox/) — scripts and PROCEDURE.md
+- [toolbox1/](toolbox1/) — Hermes language slots pointed at Grok. No keys.
 - [notebook/](notebook/) — Obsidian notes for those tools
 - [inbox/](inbox/) — packets
 

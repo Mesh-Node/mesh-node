@@ -1,0 +1,20 @@
+# toolbox1. Language slots only.
+# Point them at Grok. The login is already on the machine.
+# No keys in this file. No embedder. No reboot script.
+
+base_url: https://api.x.ai/v1
+transport: openai
+
+deriver:
+  model: grok-4.20-0309-non-reasoning
+summary:
+  model: grok-4.20-0309-non-reasoning
+dialectic:
+  minimal: grok-4.20-0309-non-reasoning
+  low: grok-4.20-0309-non-reasoning
+  medium: grok-4.20-0309-non-reasoning
+  high: grok-4.3
+  max: grok-4.3
+dream:
+  deduction: grok-4.20-0309-non-reasoning
+  induction: grok-4.20-0309-non-reasoning
